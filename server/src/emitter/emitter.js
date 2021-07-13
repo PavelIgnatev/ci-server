@@ -42,6 +42,7 @@ myEmitter.on("setInterval", () => {
 
 myEmitter.on("updateSettings", (req) => {
   settings = req;
+  pendingAssemblyList = [];
   myEmitter.emit("setInterval");
 });
 
