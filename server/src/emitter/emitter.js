@@ -26,7 +26,7 @@ function updateByPeriod() {
   return setInterval(async () => {
     await updatePendingAssemblyList(pendingAssemblyList);
     await harnessAnAgent();
-  }, settings.period * 1000 * 6);
+  }, settings.period * 1000 * 60);
 }
 
 (async () => {
