@@ -1,7 +1,7 @@
 const conf = require("../../server-conf.json");
 const fetch = require("node-fetch");
 
-async function postStartAssembly(lastList, lastAgent, settings) {
+async function postStartAssembly(lastList, lastAgent, settings, freeAgents, busyAgents) {
   try {
     if (lastList.status === "Waiting") {
       await fetch("https://shri.yandex/hw/api/build/start", {
@@ -31,7 +31,14 @@ async function postStartAssembly(lastList, lastAgent, settings) {
         buildId: lastList.id,
       }),
     });
+
+    console.log(
+      `Агент на порту ${lastAgent.port} получил задачу на сборку и начал ее выполнять`
+    );
+    console.log('Логи выполнения сборки можно посмотреть в агенте')
   } catch (error) {
+    freeAgents = freeAgents.filter((item) => item.port === lastAgent.port);
+    delete busyAgents[lastAgent.port]
     await fetch(`https://shri.yandex/hw/api/build/finish`, {
       method: "post",
       headers: {
@@ -45,6 +52,9 @@ async function postStartAssembly(lastList, lastAgent, settings) {
         buildLog: "Sorry, the server has crashed",
       }),
     });
+    console.log(
+      `Агент на порту ${lastAgent.port} завершил выполнение сборки с ошибкой`
+    );
   }
 }
 

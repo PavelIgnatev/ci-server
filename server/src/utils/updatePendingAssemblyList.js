@@ -1,4 +1,3 @@
-const myEmitter = require("../emitter/emitter.js");
 const getBuildList = require("../utils/getBuildList.js");
 
 async function updatePendingAssemblyList(
@@ -6,7 +5,7 @@ async function updatePendingAssemblyList(
   isStartup = false
 ) {
   let buildList = await getBuildList();
-  buildList.forEach((element) => {
+  buildList ? buildList.forEach((element) => {
     if (
       element.status === "Waiting" ||
       (isStartup ? element.status === "InProgress" : false)
@@ -18,6 +17,6 @@ async function updatePendingAssemblyList(
         pendingAssemblyList.push(element);
       }
     }
-  });
+  }) : ''
 }
 module.exports = updatePendingAssemblyList;

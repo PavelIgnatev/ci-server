@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
         duration: Date.now() - start,
         success: !buildLog.code ? true : false,
         buildLog:
-          buildLog.stdout + (buildLog.stderr.length ? `\n[1;33m${buildLog.stderr}` : ""),
+          buildLog.stdout + (buildLog.stderr.length ? `\n${buildLog.stderr}` : ""),
       }),
     });
 
