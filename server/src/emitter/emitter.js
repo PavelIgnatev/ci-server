@@ -67,9 +67,11 @@ myEmitter.on("updateSettings", (req) => {
 });
 
 myEmitter.on("newAgent", (agent) => {
-  console.log(`Агент на порту ${agent.port} стал доступен`);
-  delete busyAgents[agent.port]
-  if (freeAgents.indexOf(agent) === -1) freeAgents.push(agent);
+  if (freeAgents.indexOf(agent) === -1){
+    delete busyAgents[agent.port]
+    console.log(`Агент на порту ${agent.port} стал доступен`);
+    freeAgents.push(agent);
+  }
 });
 
 module.exports = myEmitter;

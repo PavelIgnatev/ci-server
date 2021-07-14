@@ -11,5 +11,5 @@ setupMiddlewares(app);
 app.use("/", mainRouter);
 
 app.listen(conf.port, () => {
-  console.log(`Server started on port ${conf.port}`);
+  console.log(`Сервер запущен и доступен на порту ${conf.port}`);
 });

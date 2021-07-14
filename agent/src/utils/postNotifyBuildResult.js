@@ -12,7 +12,6 @@ const postNotifyBuildResult = async (body) => {
       body: JSON.stringify(body),
     });
     postNotifiAgent();
-    console.log("Агент смог законнектиться с сервером");
   } catch {
     console.log(
       "Агент не смог законнектиться с сервером и будет пытаться делать это каждые 10 секунд"

@@ -13,12 +13,8 @@ setupMiddlewares(app);
 
 app.use("/", mainRouter);
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
 //Обрабатываем ситуацию, когда при старте не смог соединиться с сервером.
 postNotifiAgent()
 
 app.listen(conf.port, host);
-console.log(`running on http://${host}:${conf.port}`);
+console.log(`Агент запущен и работает на порту ${process.env.AGENT_PORT}`);
