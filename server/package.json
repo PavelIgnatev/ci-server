@@ -5,7 +5,8 @@
   "author": "Ignatev Pavel",
   "main": "server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "docker run -d -p 8080:8080 server",
+    "build-docker-image": "docker build -t server ."
   },
   "dependencies": {
     "express": "^4.17.1",

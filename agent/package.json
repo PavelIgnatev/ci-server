@@ -5,7 +5,8 @@
   "author": "Ignatev Pavel",
   "main": "server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "docker run -d -e 'AGENT_PORT=12346' -p 12346:12345 agent",
+    "build-docker-image": "docker build -t agent ."
   },
   "dependencies": {
     "express": "^4.17.1",
