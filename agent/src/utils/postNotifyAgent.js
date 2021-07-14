@@ -30,6 +30,7 @@ const postNotifiAgent = async () => {
             port: process.env.AGENT_PORT,
           }),
         });
+        console.log('Агент смог законнектиться с сервером и теперь может получать задачи')
         clearInterval(interval);
       } catch {}
     }, 10000);

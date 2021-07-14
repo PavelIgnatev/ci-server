@@ -30,7 +30,7 @@ const postNotifyBuildResult = async (body) => {
           }
         );
         postNotifiAgent();
-        console.log("Агент смог законнектиться с сервером");
+        console.log('Агент смог законнектиться с сервером и теперь может получать задачи')
         clearInterval(interval);
       } catch {}
     }, 10000);
