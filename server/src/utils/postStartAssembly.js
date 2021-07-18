@@ -1,8 +1,17 @@
 const conf = require("../../server-conf.json");
 const fetch = require("node-fetch");
 
-async function postStartAssembly(lastList, lastAgent, settings, freeAgents, busyAgents) {
+async function postStartAssembly(
+  lastList,
+  lastAgent,
+  settings,
+  freeAgents,
+  busyAgents
+) {
   try {
+    let date = new Date();
+    date.setHours(date.getHours() + 3);
+
     if (lastList.status === "Waiting") {
       await fetch("https://shri.yandex/hw/api/build/start", {
         method: "post",
@@ -12,7 +21,7 @@ async function postStartAssembly(lastList, lastAgent, settings, freeAgents, busy
         },
         body: JSON.stringify({
           buildId: lastList.id,
-          dateTime: new Date(),
+          dateTime: date,
         }),
       });
     }
@@ -35,10 +44,10 @@ async function postStartAssembly(lastList, lastAgent, settings, freeAgents, busy
     console.log(
       `Агент на порту ${lastAgent.port} получил задачу на сборку и начал ее выполнять`
     );
-    console.log('Логи выполнения сборки можно посмотреть в агенте')
+    console.log("Логи выполнения сборки можно посмотреть в агенте");
   } catch (error) {
     freeAgents = freeAgents.filter((item) => item.port === lastAgent.port);
-    delete busyAgents[lastAgent.port]
+    delete busyAgents[lastAgent.port];
     await fetch(`https://shri.yandex/hw/api/build/finish`, {
       method: "post",
       headers: {
