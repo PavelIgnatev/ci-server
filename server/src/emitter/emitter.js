@@ -41,7 +41,7 @@ function updateByPeriod() {
     "Сервер запущен и доставил информацию о сборках в статусе Waiting и InProgress в массив pendingAssemblyList"
   );
   if (settings.repoName) {
-    console.log("Настройки на странице присутствуют, интервал для обновления страницы запущен");
+    console.log("Настройки на странице присутствуют, интервал для обновления данных на странице запущен");
     myEmitter.emit("setInterval");
   }
 })();
